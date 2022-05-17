@@ -1,0 +1,20 @@
+## Configuration file for a typical Tor user
+
+## Specify Tor socks proxy port
+SocksPort 9050
+
+## Entry policies to allow/deny SOCKS requests based on IP address.
+SocksPolicy accept 127.0.0.1
+SocksPolicy reject *
+
+## Do not store any logs
+Log debug file /dev/null
+
+## Specify the country code for the TOR End Node
+ExitNodes {ar} StrictNodes 1
+
+## The directory for keeping all the keys/etc
+DataDirectory /tmp/.tor
+
+## Set NumCPUs to suppress notice
+NumCPUs 16

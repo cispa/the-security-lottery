@@ -1,0 +1,29 @@
+version: '3'
+services:
+  sec-lot:
+    build:
+      context: .
+    environment:
+      - DO_BROWSER=1
+      - DO_LANGUAGE=1
+      - DO_ONION=1
+      - DO_VPN=1
+      - DB_HOST=
+      - DB_PWD=
+      - DB_USER=
+      - DB_NAME=
+      - DB_PORT=
+      - HMA_USERNAME=
+      - HMA_PASSWORD=
+      - NUM_PROCESSES=16
+      - NUM_DOMAINS=
+      - SKIP_SETUP=0
+      - MATTERMOST_ERROR_HOOK=
+    volumes:
+      - ./data:/data/
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - ALL
