@@ -8,11 +8,10 @@ services:
       - DO_LANGUAGE=1
       - DO_ONION=1
       - DO_VPN=1
-      - DB_HOST=
-      - DB_PWD=
-      - DB_USER=
-      - DB_NAME=
-      - DB_PORT=
+      - DB_HOST=postgres-db
+      - DB_PWD=63f25c463e9220521b42fc855151a7aa3f
+      - DB_USER=postgres
+      - DB_NAME=default_database
       - HMA_USERNAME=
       - HMA_PASSWORD=
       - NUM_PROCESSES=16
@@ -27,3 +26,15 @@ services:
       - "/dev/net/tun:/dev/net/tun"
     cap_add:
       - ALL
+    links:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 63f25c463e9220521b42fc855151a7aa3f
+      POSTGRES_USER: postgres
+      POSTGRES_DB: default_database
